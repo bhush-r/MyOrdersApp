@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors -->
+    <color name="yellow_primary">#FCD203</color> <!-- Bright yellow matching screenshot -->
+    <color name="yellow_dark">#E5BE02</color>
+
+    <!-- Background Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="background_gray">#F4F5F7</color> <!-- Premium light gray layout background -->
+
+    <!-- Text Colors -->
+    <color name="black">#1F2937</color> <!-- Elegant dark grey charcoal -->
+    <color name="gray_text">#6B7280</color> <!-- Subdued text color -->
+    <color name="gray_light">#E5E7EB</color> <!-- Border light lines -->
+
+    <!-- Status Badge Colors -->
+    <color name="red_drop">#EF4444</color>
+    <color name="red_badge_bg">#FFF1F2</color>
+    <color name="red_badge_text">#E11D48</color>
+
+    <color name="green_pickup">#10B981</color>
+    <color name="green_badge_bg">#ECFDF5</color>
+    <color name="green_badge_text">#059669</color>
+
+    <!-- Banner Blue Colors -->
+    <color name="blue_info">#3B82F6</color>
+    <color name="blue_banner_bg">#EEF4FC</color>
+    <color name="blue_banner_text">#1E3A8A</color>
+
+    <!-- Navigation Colors -->
+    <color name="nav_selected">#111827</color>
+    <color name="nav_unselected">#9CA3AF</color>
+</resources>
