@@ -60,15 +60,6 @@ MyOrdersApp/
 
 ---
 
-##  Screenshots
-
-> Add your screenshots here
-
-### Main Screen
-![Screenshot](screenshots/main_screen.png)
-
----
-
 ##  Screen Recording
 
 > Add Google Drive or YouTube link here
@@ -76,7 +67,7 @@ MyOrdersApp/
 Example:
 
 ```text
-https://your-video-link.com
+[https://your-video-link.com](https://drive.google.com/file/d/1xPA_lvPjImIgMqVhjdAKFhHl_7rTqzbo/view?usp=sharing)
 ```
 
 ---
