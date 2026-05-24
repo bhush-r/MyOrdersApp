@@ -62,12 +62,8 @@ MyOrdersApp/
 
 ##  Screen Recording
 
-> Add Google Drive or YouTube link here
-
-Example:
-
 ```text
-[https://your-video-link.com](https://drive.google.com/file/d/1xPA_lvPjImIgMqVhjdAKFhHl_7rTqzbo/view?usp=sharing)
+https://your-video-link.com](https://drive.google.com/file/d/1xPA_lvPjImIgMqVhjdAKFhHl_7rTqzbo/view?usp=sharing
 ```
 
 ---
