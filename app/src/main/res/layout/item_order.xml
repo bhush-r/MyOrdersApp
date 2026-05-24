@@ -18,19 +18,20 @@
         android:orientation="vertical"
         android:padding="14dp">
 
-        <!-- Top Row: Truck, Vehicle info, and Price side-by-side -->
+        <!-- Top Row: Truck, Info metadata, and Price aligned -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Truck Icon Container on Left -->
+            <!-- Truck Container on Left with realistic truck.png -->
             <ImageView
                 android:id="@+id/ivVehicleIcon"
-                android:layout_width="44dp"
+                android:layout_width="54dp"
                 android:layout_height="44dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_truck" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/truck" />
 
             <!-- Title & Subtitle Info -->
             <LinearLayout
@@ -84,15 +85,15 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Price & Ellipsis Layout aligned to Far Right -->
+            <!-- Price & Ellipsis Aligned Vertically on Far Right -->
             <LinearLayout
                 android:id="@+id/layoutPriceMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:gravity="end|center_vertical"
-                android:orientation="horizontal">
+                android:gravity="end"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvPrice"
@@ -103,12 +104,12 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <!-- Vertical three dots menu icon -->
+                <!-- Menu icon placed directly below price -->
                 <ImageView
                     android:id="@+id/ivMenu"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="6dp"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
@@ -122,68 +123,70 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <!-- Timeline connector icons and line -->
-            <LinearLayout
-                android:layout_width="16dp"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingTop="4dp">
-
-                <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:src="@drawable/ic_location_pickup"
-                    app:tint="@color/green_pickup" />
-
-                <!-- Vertical solid connection line -->
-                <View
-                    android:layout_width="1.5dp"
-                    android:layout_height="32dp"
-                    android:background="@color/gray_light" />
-
-                <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:src="@drawable/ic_location_drop"
-                    app:tint="@color/red_drop" />
-            </LinearLayout>
-
-            <!-- Destination Address Labels -->
+            <!-- Pickup Location Row -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <!-- Pickup location text -->
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_location_pickup"
+                    app:tint="@color/green_pickup" />
+
                 <TextView
                     android:id="@+id/tvPickupLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:text="741, Gumanwara"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
+            </LinearLayout>
 
-                <!-- Spacing block matching the view line -->
+            <!-- Connecting Vertical Timeline Line -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="16dp" />
+                    android:layout_width="1.5dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="6dp"
+                    android:background="@color/gray_light" />
+            </LinearLayout>
 
-                <!-- Drop location text -->
+            <!-- Drop Location Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/ic_location_drop"
+                    app:tint="@color/red_drop" />
+
                 <TextView
                     android:id="@+id/tvDropLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:text="00, Main Rd, Shivaji Nagar, Jhansi, Uttar Pradesh 284001, India"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Status Bar Badge and action Buttons layout row -->
+        <!-- Bottom Action row containing status badge and buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -211,42 +214,48 @@
                 android:layout_height="1dp"
                 android:layout_weight="1" />
 
-            <!-- Invoice Action Button with Download bracket icon -->
-            <Button
+            <!-- Invoice Action Button (Outlined Style) -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnInvoice"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_button_white"
-                android:drawableStart="@drawable/ic_download"
-                android:drawablePadding="6dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:minWidth="90dp"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:text="Invoice"
+                android:text="@string/invoice"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="12sp"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/gray_light"
+                app:strokeWidth="1dp"
+                app:icon="@drawable/ic_download"
+                app:iconGravity="textStart"
+                app:iconPadding="6dp"
+                app:iconSize="16dp"
                 app:iconTint="@color/black" />
 
-            <!-- Book Again Primary CTA Button -->
-            <Button
+            <!-- Book Again CTA Button -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBookAgain"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:background="@drawable/bg_button_yellow"
+                android:backgroundTint="@color/yellow_primary"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:minWidth="100dp"
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
-                android:text="Book Again"
+                android:text="@string/book_again"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:cornerRadius="8dp" />
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

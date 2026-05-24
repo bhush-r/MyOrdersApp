@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Header Section with Yellow Backdrop -->
+            <!-- Header Section with Yellow Background -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -27,9 +27,9 @@
                 android:paddingStart="16dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="16dp"
-                android:paddingBottom="20dp">
+                android:paddingBottom="44dp">
 
-                <!-- Title & Icon -->
+                <!-- Title & Illustration Row -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -54,26 +54,38 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:lineSpacingMultiplier="1.1"
+                            android:lineSpacingMultiplier="1.15"
                             android:text="View your completed trips here. You can\ndownload invoices or quickly book the same order again."
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
 
-                    <!-- Beautiful Graphic Frame -->
+                    <!-- Realistic Delivery Illustration -->
                     <ImageView
-                        android:layout_width="110dp"
-                        android:layout_height="80dp"
+                        android:layout_width="120dp"
+                        android:layout_height="90dp"
                         android:layout_marginStart="8dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/ic_truck" />
+                        android:src="@drawable/truck" />
                 </LinearLayout>
+            </LinearLayout>
 
-                <!-- Search Input, Filter, & Sort on the SAME horizontal row -->
+            <!-- Main Content Card with Rounded Overlap -->
+            <LinearLayout
+                android:id="@+id/layoutMainContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-24dp"
+                android:background="@drawable/bg_main_content"
+                android:orientation="vertical"
+                android:paddingTop="20dp">
+
+                <!-- Search, Filter, Sort horizontal unified Row -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -85,8 +97,8 @@
                         android:background="@drawable/bg_search_bar"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp">
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp">
 
                         <ImageView
                             android:layout_width="18dp"
@@ -100,7 +112,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="8dp"
                             android:background="@android:color/transparent"
-                            android:hint="Search by Order ID / Location"
+                            android:hint="@string/search_hint"
                             android:imeOptions="actionSearch"
                             android:inputType="text"
                             android:singleLine="true"
@@ -134,10 +146,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
-                            android:text="Filter"
+                            android:text="@string/filter"
                             android:textColor="@color/black"
-                            android:textSize="12sp"
-                            android:textStyle="normal" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <!-- Sort Button -->
@@ -165,145 +176,172 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
-                            android:text="Sort"
+                            android:text="@string/sort"
                             android:textColor="@color/black"
-                            android:textSize="12sp"
-                            android:textStyle="normal" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
 
-            <!-- Horizontal Scroll Tabs Section -->
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none">
-
+                <!-- Premium Segmented Control (Pill Tabs layout) -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/layoutTabContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_segmented_container"
                     android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingTop="14dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="10dp">
+                    android:padding="3dp">
 
-                    <Button
+                    <!-- Tab 1: All Orders -->
+                    <TextView
                         android:id="@+id/btnAllOrders"
-                        android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:background="@drawable/bg_tab_selected"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:minWidth="100dp"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:text="All Orders"
-                        android:textAllCaps="false"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="@string/all_orders"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <!-- Divider 1 -->
+                    <View
+                        android:id="@+id/dividerTab1"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="@color/gray_light"
+                        android:visibility="gone" />
+
+                    <!-- Tab 2: Completed -->
+                    <TextView
                         android:id="@+id/btnCompleted"
-                        android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:background="@drawable/bg_tab_unselected"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:minWidth="100dp"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:text="Completed"
-                        android:textAllCaps="false"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="@string/completed"
                         android:textColor="@color/gray_text"
-                        android:textSize="13sp" />
+                        android:textSize="12sp" />
 
-                    <Button
+                    <!-- Divider 2 -->
+                    <View
+                        android:id="@+id/dividerTab2"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="@color/gray_light" />
+
+                    <!-- Tab 3: Cancelled -->
+                    <TextView
                         android:id="@+id/btnCancelled"
-                        android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:background="@drawable/bg_tab_unselected"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:minWidth="100dp"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:text="Cancelled"
-                        android:textAllCaps="false"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="@string/cancelled"
                         android:textColor="@color/gray_text"
-                        android:textSize="13sp" />
+                        android:textSize="12sp" />
 
-                    <Button
+                    <!-- Divider 3 -->
+                    <View
+                        android:id="@+id/dividerTab3"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="@color/gray_light" />
+
+                    <!-- Tab 4: Booked Again -->
+                    <TextView
                         android:id="@+id/btnBookedAgain"
-                        android:layout_width="wrap_content"
-                        android:layout_height="38dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:background="@drawable/bg_tab_unselected"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:minWidth="110dp"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:text="Book Again"
-                        android:textAllCaps="false"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="@string/booked_again"
                         android:textColor="@color/gray_text"
-                        android:textSize="13sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
-            </HorizontalScrollView>
 
-            <!-- Interactive Info Banner -->
-            <LinearLayout
-                android:id="@+id/layoutInfoBanner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/bg_info_banner"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/ic_info"
-                    app:tint="@color/blue_info" />
-
-                <TextView
-                    android:layout_width="0dp"
+                <!-- Bottom content area with light grey list backdrop -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:lineSpacingMultiplier="1.15"
-                    android:text="यहाँ आपके सभी पिछले ऑर्डर दिखाए गए हैं।\nआप इनवॉइस डाउनलोड कर सकते हैं या उसी पते पर दोबारा ऑर्डर कर सकते हैं।"
-                    android:textColor="@color/black"
-                    android:textSize="11.5sp" />
+                    android:background="@color/background_gray"
+                    android:orientation="vertical"
+                    android:paddingTop="12dp">
 
-                <!-- Banner Dismiss/Close button -->
-                <ImageView
-                    android:id="@+id/ivCloseBanner"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/ic_close"
-                    app:tint="@color/gray_text" />
+                    <!-- Info Banner -->
+                    <LinearLayout
+                        android:id="@+id/layoutInfoBanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/bg_info_banner"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_info"
+                            app:tint="@color/blue_info" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:lineSpacingMultiplier="1.15"
+                            android:text="यहाँ आपके सभी पिछले ऑर्डर दिखाए गए हैं।\nआप इनवॉइस डाउनलोड कर सकते हैं या उसी पते पर दोबारा ऑर्डर कर सकते हैं।"
+                            android:textColor="@color/black"
+                            android:textSize="11.5sp" />
+
+                        <!-- Close Button -->
+                        <ImageView
+                            android:id="@+id/ivCloseBanner"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:src="@drawable/ic_close"
+                            app:tint="@color/gray_text" />
+                    </LinearLayout>
+
+                    <!-- RecyclerView for Orders -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewOrders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="88dp"
+                        tools:listitem="@layout/item_order"
+                        tools:itemCount="4" />
+                </LinearLayout>
             </LinearLayout>
-
-            <!-- RecyclerView of Orders -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewOrders"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:clipToPadding="false"
-                android:paddingBottom="80dp"
-                tools:listitem="@layout/item_order" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -314,12 +352,12 @@
         android:layout_height="56dp"
         android:layout_gravity="bottom"
         android:background="@color/white"
-        app:itemIconTint="@color/bottom_nav_color"
-        app:itemTextColor="@color/bottom_nav_color"
+        app:itemIconTint="@drawable/bottom_nav_color"
+        app:itemTextColor="@drawable/bottom_nav_color"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 
-    <!-- Highly Customized Premium Floating Help Button -->
+    <!-- Customized Floating Help Button -->
     <LinearLayout
         android:id="@+id/fabHelp"
         android:layout_width="60dp"
@@ -327,7 +365,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="72dp"
-        android:background="@drawable/bg_tab_selected"
+        android:background="@drawable/bg_help_button"
         android:clickable="true"
         android:elevation="6dp"
         android:focusable="true"
@@ -345,7 +383,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="Help"
+            android:text="@string/help"
             android:textColor="@color/black"
             android:textSize="10sp"
             android:textStyle="bold" />

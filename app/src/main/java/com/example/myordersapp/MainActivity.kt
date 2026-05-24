@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -27,10 +27,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var allOrders: List<Order>
     private var displayedOrders: List<Order> = emptyList()
 
-    private lateinit var btnAllOrders: Button
-    private lateinit var btnCompleted: Button
-    private lateinit var btnCancelled: Button
-    private lateinit var btnBookedAgain: Button
+    // Premium Segmented Tabs represented as TextViews
+    private lateinit var btnAllOrders: TextView
+    private lateinit var btnCompleted: TextView
+    private lateinit var btnCancelled: TextView
+    private lateinit var btnBookedAgain: TextView
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var fabHelp: LinearLayout
 
@@ -131,32 +132,53 @@ class MainActivity : AppCompatActivity() {
     private fun selectTab(status: OrderStatus) {
         currentFilterStatus = status
 
-        // Reset tab styles
+        // Reset tab styling
         resetButton(btnAllOrders)
         resetButton(btnCompleted)
         resetButton(btnCancelled)
         resetButton(btnBookedAgain)
 
-        // Highlight selected tab
+        // Turn all segmented vertical dividers on by default
+        findViewById<View>(R.id.dividerTab1).visibility = View.VISIBLE
+        findViewById<View>(R.id.dividerTab2).visibility = View.VISIBLE
+        findViewById<View>(R.id.dividerTab3).visibility = View.VISIBLE
+
+        // Highlight selected tab & hide its corresponding separator line dynamically
         when (status) {
-            OrderStatus.ALL -> highlightButton(btnAllOrders)
-            OrderStatus.COMPLETED -> highlightButton(btnCompleted)
-            OrderStatus.CANCELLED -> highlightButton(btnCancelled)
-            OrderStatus.BOOKED_AGAIN -> highlightButton(btnBookedAgain)
+            OrderStatus.ALL -> {
+                highlightButton(btnAllOrders)
+                findViewById<View>(R.id.dividerTab1).visibility = View.GONE
+            }
+            OrderStatus.COMPLETED -> {
+                highlightButton(btnCompleted)
+                findViewById<View>(R.id.dividerTab1).visibility = View.GONE
+                findViewById<View>(R.id.dividerTab2).visibility = View.GONE
+            }
+            OrderStatus.CANCELLED -> {
+                highlightButton(btnCancelled)
+                findViewById<View>(R.id.dividerTab2).visibility = View.GONE
+                findViewById<View>(R.id.dividerTab3).visibility = View.GONE
+            }
+            OrderStatus.BOOKED_AGAIN -> {
+                highlightButton(btnBookedAgain)
+                findViewById<View>(R.id.dividerTab3).visibility = View.GONE
+            }
         }
 
         // Apply tab state filtering
         applyFilterAndSearch()
     }
 
-    private fun highlightButton(button: Button) {
-        button.setBackgroundResource(R.drawable.bg_tab_selected)
-        button.setTextColor(ContextCompat.getColor(this, R.color.black))
+    private fun highlightButton(textView: TextView) {
+        textView.setBackgroundResource(R.drawable.bg_tab_selected)
+        textView.setTextColor(ContextCompat.getColor(this, R.color.black))
+        textView.setTypeface(null, android.graphics.Typeface.BOLD)
     }
 
-    private fun resetButton(button: Button) {
-        button.setBackgroundResource(R.drawable.bg_tab_unselected)
-        button.setTextColor(ContextCompat.getColor(this, R.color.gray_text))
+    private fun resetButton(textView: TextView) {
+        textView.setBackgroundResource(R.drawable.bg_tab_unselected)
+        textView.setTextColor(ContextCompat.getColor(this, R.color.gray_text))
+        textView.setTypeface(null, android.graphics.Typeface.NORMAL)
     }
 
     private fun setupSearchBox() {
@@ -171,7 +193,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupSortAndFilterButtons() {
-        // Implement fully-working functional sort options
+        // Implement working functional sort options matching mockup dialog actions
         btnSortRow.setOnClickListener {
             val sortOptions = arrayOf("Price: Low to High", "Price: High to Low", "Date: Newest First")
             val builder = AlertDialog.Builder(this)
@@ -214,7 +236,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun sortDisplayedOrdersByDate() {
-        // Since we are showing simulated static times, reverse current displayed order representation
         displayedOrders = displayedOrders.shuffled() // simulate dynamic sorting
         ordersAdapter.updateOrders(displayedOrders)
         Toast.makeText(this, "Sorted by newest trip date", Toast.LENGTH_SHORT).show()
@@ -250,7 +271,7 @@ class MainActivity : AppCompatActivity() {
             OrderStatus.BOOKED_AGAIN -> allOrders.filter { it.status == OrderStatus.BOOKED_AGAIN }
         }
 
-        // 2. Filter by search bar query text (Search matching Order ID or Pickup/Drop Locations)
+        // 2. Filter by search bar query text
         if (currentSearchQuery.isNotEmpty()) {
             filtered = filtered.filter { order ->
                 order.id.contains(currentSearchQuery, ignoreCase = true) ||
@@ -277,10 +298,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Navigating to Home Dashboard", Toast.LENGTH_SHORT).show()
                     true
                 }
-                R.id.nav_orders -> {
-                    // Already on orders screen
-                    true
-                }
+                R.id.nav_orders -> true
                 R.id.nav_payments -> {
                     Toast.makeText(this, "Navigating to Payments Panel", Toast.LENGTH_SHORT).show()
                     true

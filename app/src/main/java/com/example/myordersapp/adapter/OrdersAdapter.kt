@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myordersapp.R
 import com.example.myordersapp.model.Order
@@ -54,7 +55,7 @@ class OrdersAdapter(
                 holder.statusBadge.visibility = View.VISIBLE
                 holder.statusBadge.text = "CANCELLED"
                 holder.statusBadge.setBackgroundResource(R.drawable.bg_badge_cancelled)
-                holder.statusBadge.setTextColor(holder.itemView.context.getColor(R.color.red_badge_text))
+                holder.statusBadge.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.red_badge_text))
             }
             OrderStatus.COMPLETED -> {
                 holder.statusBadge.visibility = View.GONE
@@ -76,7 +77,7 @@ class OrdersAdapter(
             onBookAgainClick(order)
         }
 
-        // Extra action popup menu for three dots menu
+        // Extra action popup menu for vertical three dots menu
         holder.menuIcon.setOnClickListener { view ->
             val context = view.context
             val popup = PopupMenu(context, view)
